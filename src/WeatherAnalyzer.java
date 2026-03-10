@@ -38,7 +38,7 @@ public interface WeatherAnalyzer {
 
     static List<WeatherRecord> parseCsv(Path path) throws IOException {
         return Files.lines(path)
-                .skip(1) // Skip header
+                .skip(1)
                 .map(line -> line.split(","))
                 .map(data -> new WeatherRecord(
                         LocalDate.parse(data[0]),
@@ -46,7 +46,7 @@ public interface WeatherAnalyzer {
                         Integer.parseInt(data[2]),
                         Double.parseDouble(data[3])
                 ))
-                .toList(); // Java 16+ Stream.toList()
+                .toList();
     }
 
     static double averageTemperatureForMonth(List<WeatherRecord> records, int month) {
